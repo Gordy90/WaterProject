@@ -218,6 +218,13 @@ body {
   background: #90e0ef;
 }
 
+.cell.valid-placement {
+  background-color: #d5f5e3;
+  border: 2px solid #2ecc71;
+  box-shadow: 0 0 8px rgba(46, 204, 113, 0.5);
+  animation: pulse 1.5s infinite alternate;
+}
+
 .cell img {
   max-width: 90%;
   max-height: 90%;
@@ -270,6 +277,9 @@ body {
   align-items: center;
   margin-top: 20px;
   margin-bottom: 40px;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 
 .jerry-can-label {
@@ -283,6 +293,9 @@ body {
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 
 .jerrycan {
