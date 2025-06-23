@@ -149,7 +149,27 @@ function updateValidCellHighlights(){
   });
 }
 
-window.addEventListener('load',init);
+function resetPipelines() {
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      if ((r === start.row && c === start.col) || (r === finish.row && c === finish.col)) continue;
+      board[r][c] = null;
+      const cell = boardEl.querySelector(`[data-row="${r}"][data-col="${c}"]`);
+      if (cell && cell.classList.contains('placed')) {
+        cell.classList.remove('placed');
+        while (cell.firstChild) cell.removeChild(cell.firstChild);
+      }
+    }
+  }
+  validNextCells = neighbors(start.row, start.col);
+  updateValidCellHighlights();
+}
+
+window.addEventListener('load', () => {
+  init();
+  const resetBtn = document.getElementById('resetPipesBtn');
+  if (resetBtn) resetBtn.onclick = resetPipelines;
+});
 
 function pathExists(start, finish, obsArr) {
   const queue = [{row: start.row, col: start.col}];
